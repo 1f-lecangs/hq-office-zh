@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>办公室看板</title>
+  <meta name="description" content="团队 Bot 的实时 3D 办公室：谁在工作、谁在等你、哪些已经完成。">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="https://bodila51.github.io/grokbot-wallpaper/assets/brand/logo-mark.png">
+  <link rel="apple-touch-icon" href="https://bodila51.github.io/grokbot-wallpaper/assets/brand/logo-mark.png">
+  <meta name="theme-color" content="#F3F4F6">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://bodila51.github.io/grokbot-wallpaper/office/styles.css">
+  <link rel="stylesheet" href="https://bodila51.github.io/grokbot-wallpaper/office/scene/scene.css">
+  <link rel="stylesheet" href="https://bodila51.github.io/grokbot-wallpaper/office/ui/ui.css">
+  <link rel="stylesheet" href="https://bodila51.github.io/grokbot-wallpaper/office/share/share.css">
+  <link rel="stylesheet" href="./zh.css">
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js">
+  <link rel="preload" href="https://bodila51.github.io/grokbot-wallpaper/assets/office/office.glb" as="fetch" crossorigin>
+</head>
+<body>
+  <main id="scene" aria-label="办公室"><div class="hq-loading" role="status"><span class="hq-loading-label">正在搭建办公室</span><span class="hq-loading-track"><i></i></span></div></main>
+  <header id="topbar"></header>
+  <nav id="floors" aria-label="楼层"></nav>
+  <aside id="panel" aria-label="Bot 卡片与楼层团队"></aside>
+  <section id="feed" aria-label="动态"></section>
+  <script type="module" src="./loader.js"></script>
+</body>
+</html>

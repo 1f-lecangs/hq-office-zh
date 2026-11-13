@@ -1,0 +1,14 @@
+/* Simplified Chinese overlay: CJK font, no English-oriented letter-spacing. */
+html { font-family: "Noto Sans SC", "Inter", system-ui, sans-serif; }
+html, body, button, input, textarea,
+.bhq-word, .bhq-h2, .bhq-h3, .bhq-label, .bhq-ftext, .bhq-cta,
+.bhq-schip, .bhq-usage-label, .bhq-live, .bhq-reset, .bhq-share,
+.bhq-wbtn, .bhq-roff, .bhq-dtoggle, .bhq-tbot, .bhq-ttop,
+.bhq-tsub, .bhq-num, .hq-loading-label, .hqt-text,
+.bhq-shr-title, .bhq-shr-note, .bhq-shr-btn, .bhq-snd,
+.bhq-demo, .bhq-feed, .bhq-stepsblock, .bhq-now, .bhq-where,
+.bhq-stTxt, .bhq-name {
+  font-family: "Noto Sans SC", "Inter", "Nunito", system-ui, sans-serif !important;
+  letter-spacing: 0 !important;
+}
+.hq-loading-label { font-weight: 600; }
