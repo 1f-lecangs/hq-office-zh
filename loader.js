@@ -3,6 +3,8 @@
 // Official status keys (working, idle, waiting_user, error, stuck, done) are left unchanged.
 
 const OFFICIAL = 'https://bodila51.github.io/grokbot-wallpaper/office/';
+const ASSET_ROOT = new URL('../assets', OFFICIAL).href;
+const DEMO_STATE = new URL('data/demo-state.json', OFFICIAL).href;
 const THREE = 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
 const ADDONS = 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/';
 
@@ -390,6 +392,10 @@ function patchWallpaper(src) {
 }
 
 function patchGeneric(src) {
+  // These stay document-relative in the official module. From this origin they miss the GLB and the
+  // no-hash demo, so the loader never reaches the first floor.
+  src = src.replace("const ASSETS = '../assets';", `const ASSETS = ${JSON.stringify(ASSET_ROOT)};`);
+  src = src.replace("fetch('./data/demo-state.json'", `fetch(${JSON.stringify(DEMO_STATE)}`);
   for (const [from, to] of STRINGS) src = replaceQuoted(src, from, to);
   src = src.replaceAll('Building the office', '正在搭建办公室');
   src = src.replace(/Intl\.(DateTimeFormat|NumberFormat)\('en-GB'/g, "Intl.$1('zh-CN'");
@@ -445,9 +451,13 @@ function findRelativeJs(raw) {
     const spec = m[2];
     if (/\.(js)(\?|$)/.test(spec) || !/\.[a-z0-9]+$/i.test(spec)) out.add(spec);
   }
-  // dynamic ternary: import(cond ? './a.js' : './b.js')
-  const re2 = /import\s*\(\s*[^)]*(['"])(\.\.?\/[^'"]+\.js)\1/g;
-  while ((m = re2.exec(src))) out.add(m[2]);
+  // dynamic import, including both arms of import(cond ? './a.js' : './b.js')
+  const re2 = /import\s*\(([^)]*)\)/g;
+  while ((m = re2.exec(src))) {
+    const inner = /(['"])(\.\.?\/[^'"]+\.js)\1/g;
+    let m2;
+    while ((m2 = inner.exec(m[1]))) out.add(m2[2]);
+  }
   return [...out];
 }
 
